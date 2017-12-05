@@ -2,23 +2,32 @@
 
 //Finds the max number in a array
 function max(numbers) {
-    let largestNumber = 0;
-    let i = 0;
+  let largestNumber = numbers[0];
+  let i = 0;
 
-    //loop until end of array, capturing the largest number
-    //in the array
-    while (i < numbers.length) {
-        if (largestNumber < numbers[i]) {
-            largestNumber = numbers[i];
-        }
-        i++;
+  //loop until end of array, capturing the largest number
+  //in the array
+  while (i < numbers.length) {
+    if (largestNumber < numbers[i]) {
+      largestNumber = numbers[i];
     }
-    return largestNumber;
+    i++;
+  }
+  return largestNumber;
 }
 
 function min(numbers) {
-    // your code here
+  let i = 0;
+  let lowNum = numbers[0];
+  while (i < numbers.length) {
+    if (lowNum > numbers[i]) {
+      lowNum = numbers[i];
+    }
+    i++;
+  }
+  return lowNum;
 }
+   
 
 
 
@@ -33,12 +42,12 @@ function min(numbers) {
 // tests
 
 function testFunctionWorks(fn, input, expected) {
-    if (fn(input) === expected) {
-        console.log('SUCCESS: `' + fn.name + '` works on `[' + input + ']`');
-        return true;
-    } else {
-        console.log(
-            'FAILURE: `' +
+  if (fn(input) === expected) {
+    console.log('SUCCESS: `' + fn.name + '` works on `[' + input + ']`');
+    return true;
+  } else {
+    console.log(
+      'FAILURE: `' +
             fn.name +
             '([' +
             input +
@@ -46,43 +55,43 @@ function testFunctionWorks(fn, input, expected) {
             expected +
             ' but was ' +
             fn(input)
-        );
-        return false;
-    }
+    );
+    return false;
+  }
 }
 
 function testEmpty(fn) {
-    if (fn([]) === null || fn([]) == undefined) {
-        console.log(`SUCCESS: ${fn.name} works on empty arrays`);
-        return true;
-    } else {
-        console.log(
-            `FAILURE: ${fn.name} should return undefined or null for empty arrays`
-        );
-        return false;
-    }
+  if (fn([]) === null || fn([]) == undefined) {
+    console.log(`SUCCESS: ${fn.name} works on empty arrays`);
+    return true;
+  } else {
+    console.log(
+      `FAILURE: ${fn.name} should return undefined or null for empty arrays`
+    );
+    return false;
+  }
 }
 
 (function runTests() {
-    // we'll use the variables in our test cases
-    const numList1 = [-5, 28, 98, -20013, 0.7878, 22, 115];
-    const realMin1 = numList1[3];
-    const realMax1 = numList1[6];
-    const numList2 = [0, 1, 2, 3, 4];
-    const realMin2 = numList2[0];
-    const realMax2 = numList2[4];
+  // we'll use the variables in our test cases
+  const numList1 = [-5, 28, 98, -20013, 0.7878, 22, 115];
+  const realMin1 = numList1[3];
+  const realMax1 = numList1[6];
+  const numList2 = [0, 1, 2, 3, 4];
+  const realMin2 = numList2[0];
+  const realMax2 = numList2[4];
 
-    const testResults = [
-        testFunctionWorks(max, numList1, realMax1),
-        testFunctionWorks(max, numList2, realMax2),
-        testFunctionWorks(min, numList1, realMin1),
-        testFunctionWorks(min, numList2, realMin2),
-        testEmpty(max),
-        testEmpty(min),
-    ];
+  const testResults = [
+    testFunctionWorks(max, numList1, realMax1),
+    testFunctionWorks(max, numList2, realMax2),
+    testFunctionWorks(min, numList1, realMin1),
+    testFunctionWorks(min, numList2, realMin2),
+    testEmpty(max),
+    testEmpty(min),
+  ];
 
-    const numPassing = testResults.filter(function(result) {
-        return result;
-    }).length;
-    console.log(numPassing + ' out of ' + testResults.length + ' tests passing.');
+  const numPassing = testResults.filter(function(result) {
+    return result;
+  }).length;
+  console.log(numPassing + ' out of ' + testResults.length + ' tests passing.');
 })();
